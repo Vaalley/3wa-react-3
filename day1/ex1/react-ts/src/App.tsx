@@ -1,35 +1,11 @@
-import { Greeting } from './components/Greeting'
+import { ArticleList } from './components/ArticleList'
 
 function App() {
   return (
-    <>
-      <h1>Greeting Examples</h1>
-
-      {/* Basic example */}
-      <Greeting name="Alice" />
-
-      {/* With age */}
-      <Greeting
-        name="Bob"
-        age={25}
-        isOnline={true}
-      />
-
-      {/* With invalid age */}
-      <Greeting
-        name="Charlie"
-        age={-5}
-        isOnline={false}
-      />
-
-      {/* With hobbies */}
-      <Greeting
-        name="Diana"
-        age={30}
-        hobbies={["Reading", "Swimming", "Photography"]}
-        isOnline={true}
-      />
-    </>
+    <div>
+      <h1>Articles List</h1>
+      <ArticleList />
+    </div>
   )
 }
 
