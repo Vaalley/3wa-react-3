@@ -1,47 +1,41 @@
 import React from 'react';
 import PizzaCard from '@molecules/PizzaCard';
 import Title from '@atoms/Title';
+import { usePizzas } from '@hooks/queries';
 import './HomePage.css';
 
-const PIZZAS = [
-  {
-    name: 'Margherita',
-    description: 'Tomate, mozzarella, basilic frais',
-    price: 10,
-  },
-  {
-    name: 'Regina',
-    description: 'Tomate, mozzarella, jambon, champignons',
-    price: 12,
-  },
-  {
-    name: 'Calzone',
-    description: 'Tomate, mozzarella, jambon, œuf (pizza pliée)',
-    price: 13,
-  },
-  {
-    name: 'Hawai',
-    description: 'Tomate, mozzarella, jambon, champignons, œuf (pizza pliée)',
-    price: 14,
-  },
-  {
-    name: 'Mediterranea',
-    description: 'Tomate, mozzarella, saumon, champignons, œuf (pizza pliée)',
-    price: 15,
-  },
-];
-
 const HomePage: React.FC = () => {
+  const { data: pizzas, isLoading, isError } = usePizzas();
+
+  if (isLoading) {
+    return (
+      <div className="home-page loading">
+        <Title>Chargement des pizzas...</Title>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="home-page error">
+        <Title>Erreur lors du chargement des pizzas</Title>
+        <p>Veuillez réessayer plus tard.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="home-page">
-      <Title>My Pizza App 🍕</Title>
-      <div className="pizzas-grid">
-        {PIZZAS.map((pizza) => (
+      <Title>Nos Pizzas</Title>
+      <div className="pizza-grid">
+        {pizzas?.map((pizza) => (
           <PizzaCard
-            key={pizza.name}
+            key={pizza.id}
+            id={pizza.id}
             name={pizza.name}
             description={pizza.description}
             price={pizza.price}
+            liked={pizza.liked}
           />
         ))}
       </div>

@@ -1,12 +1,24 @@
 .home-page {
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 2rem;
+  text-align: center;
 }
 
 .pizzas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
+  padding: 2rem 0;
+}
+
+.home-page.loading,
+.home-page.error {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-page.error {
+  color: #dc3545;
 }

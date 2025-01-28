@@ -2,22 +2,25 @@ import React from 'react';
 import './Button.css';
 
 interface ButtonProps {
-  label: string;
+  children: React.ReactNode;
   onClick?: () => void;
   variant?: 'primary' | 'secondary';
+  disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ 
-  label, 
-  onClick, 
-  variant = 'primary' 
+const Button: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  variant = 'primary',
+  disabled = false
 }) => {
   return (
-    <button 
+    <button
       className={`button ${variant}`}
       onClick={onClick}
+      disabled={disabled}
     >
-      {label}
+      {children}
     </button>
   );
 };

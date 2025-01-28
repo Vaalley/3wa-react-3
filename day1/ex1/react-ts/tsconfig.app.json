@@ -36,6 +36,9 @@
       ],
       "@pages/*": [
         "components/pages/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
       ]
     }
   },
